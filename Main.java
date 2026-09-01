@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
         String archivoOrigen = "data.txt";
         String archivoDestino = "output.txt";
-        String vocales = "aeiouAEIOUáéíóúÁÉÍÓÚüÜ"; // Incluye tildes por seguridad
+        String vocales = "aeiouAEIOUáéíóúÁÉÍÓÚüÜ"; 
 
         try (BufferedReader br = new BufferedReader(new FileReader(archivoOrigen));
              BufferedWriter bw = new BufferedWriter(new FileWriter(archivoDestino))) {
