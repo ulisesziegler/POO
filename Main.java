@@ -1,73 +1,53 @@
+package ProcesadorArchivos;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.AccessDeniedException;
+
 public class Main {
 
     public static void main(String[] args) {
-    /*
-        Televisor tv1 = new Televisor(
-                "Samsung",
-                "Crystal",
-                2023,
-                'O',
-                true,
-                pantalla
-        );
 
-        tv1.mostrarDatos();
+        String archivoEntrada = "data.txt";
+        String archivoSalida  = "output.txt";
+
+        try (
+                BufferedReader lector  = new BufferedReader(new FileReader(archivoEntrada));
+                BufferedWriter escritor = new BufferedWriter(new FileWriter(archivoSalida))
+        ) {
+            String linea;
+            int contadorLineas = 0;
+
+            while ((linea = lector.readLine()) != null) {
+                contadorLineas++;
+                String lineaProcesada = contadorLineas + ". " + linea.toUpperCase();
+                escritor.write(lineaProcesada);
+                escritor.newLine();
+            }
+
+            System.out.println("proceso finalizado con exito.");
+            System.out.println("lineas procesadas: " + contadorLineas);
+
+        } catch (FileNotFoundException e) {
+            System.out.println("no se encontro el archivo '" + archivoEntrada + "'.");
+            System.out.println("detalle: " + e.getMessage());
+
+        } catch (AccessDeniedException e) {
+            System.out.println("No tienes permisos para acceder a este archivo.");
+
+        } catch (IOException e) {
+            System.out.println("error de entrada/salida al procesar los archivos.");
+            System.out.println("detalle: " + e.getMessage());
+
+        } catch (SecurityException e) {
+            System.out.println("violacion de permisos.");
+
+        } finally {
+            System.out.println("ejecucion del programa finalizada.");
+        }
     }
-    */
-
-
-        Pantalla pantalla = new Pantalla(55, "4K");
-
-        Televisor tv1 = new Televisor(
-                "Samsung",
-                "Crystal",
-                2023,
-                'O',
-                true,
-                pantalla
-        );
-
-        Televisor tv2 = new Televisor(   "LG",     "AI ThinQ",    2024,    'L',  true, pantalla);
-        System.out.println("");
-        tv1.mostrarDatos();
-        System.out.println("");
-        tv2.mostrarDatos();
-
-        // modificamos resoloción
-        pantalla.resolucion = "1080p";
-
-        System.out.println("Después del cambio:");
-
-        System.out.println("");
-        System.out.println("Televisión 1 );
-        tv1.mostrarDatos();
-        System.out.println("");
-        tv2.mostrarDatos();
-    }
-
-
-
-
-
-
-        /* ejercicio 3
-        Pantalla pantalla = new Pantalla(55, "4K");
-
-        Televisor tv1 = new Televisor("Samsung","Series 9", 2023, 'O',true,pantalla);
-
-        System.out.println("Estado inicial:");
-        tv1.mostrarEstado();
-
-        tv1.encender();
-
-        System.out.println("Después de encender:");
-        tv1.mostrarEstado();
-
-        tv1.apagar();
-
-        System.out.println("Después de apagar:");
-        tv1.mostrarEstado();
-    }*/
-
 }
-
